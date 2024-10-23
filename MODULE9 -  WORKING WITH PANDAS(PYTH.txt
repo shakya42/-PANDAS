@@ -1,0 +1,98 @@
+                                                                  MODULE:9 -  WORKING WITH PANDAS(PYTHON)
+
+
+
+# 1. Create a series of three different colors.
+import numpy as np
+import pandas as pd
+
+codes = ["YELLOW", "PURPLE", "ORANGE"]
+series_1 = pd.Series(codes)
+print(series_1)
+
+ # 2. View the series of different colors.
+import matplotlib.pyplot as plt
+
+plt.figure(figsize=(8, 6))
+plt.bar(series_1.index, [1] * len(codes), color=codes, width=0.4, alpha=1)
+plt.title("Color Codes View")
+plt.xticks(rotation=45)
+plt.yticks([])
+plt.show()
+
+# 3. Create a series of three different car types and view it.
+Cars = {"TESLA": 15, "FORD": 30, "BMW": 20}
+series_2 = pd.Series(Cars)
+plt.figure(figsize=(8, 6))
+plt.bar(series_2.index, series_2.values, color="skyblue", width=0.5)
+plt.title("Car Types")
+plt.xticks(rotation=45)
+plt.show()
+
+# 4. Combine the series of cars and colors into a DataFrame.
+series1 = pd.Series(["TESLA", "FORD", "BMW"])
+series2 = pd.Series(["YELLOW", "PURPLE", "ORANGE"])
+df = pd.DataFrame({"Cars": series1, "Colour": series2})
+print(df)
+
+# 5. Find the different datatypes of the car data Data Frame.
+print(df.dtypes)
+
+
+# 6. Describe your current car sales Data Frame using describe ().
+Cars_Data = {
+    "Name": ["Toyota", "Ford", "BMW", "Mercedes", "Audi"],
+    "Color": ["Red", "Blue", "White", "Black", "Grey"],
+    "Prices": [2000000, 1500000, 3500000, 5000000, 2500000],
+    "Sales": [45000, 57000, 22000, 33000, 27000],
+    "Maintenanace_cost": [4000, 6000, 7000, 3000, 5000],
+    "Mileage": [18, 20, 15, 17, 16]
+}
+df = pd.DataFrame(Cars_Data)
+print(df["Sales"].describe())
+
+# 7. Get information about your Data Frame using info ().
+print(df.info())
+
+
+# 8. Create a Series of different numbers and find the mean of them.
+new_series = pd.Series(np.random.uniform(50, 100, size=10))
+print("NEW SERIES:")
+print(new_series)
+result = new_series.mean()
+print(f"The mean of the above series is: {result}")
+
+# 9. Create a Series of different numbers and find the sum of them.
+print(f"The sum of the series is: {new_series.sum()}")
+
+
+# 10. List out all the column names of the car sales Data Frame .
+print(df.columns.tolist())
+
+
+# 11. Find the length of the car sales Data Frame.
+print(len(df))
+
+
+ # 12. Show the first 3 rows of the car sales DataFrame.
+print(df.head(3))
+
+
+# 13. Show the last 3 rows of the car sales DataFrame.
+print(df.tail(3))
+
+
+# 14. Use .loc to select the row at index 3 of the car sales DataFrame.
+print(df.loc[3, ["Sales"]])
+
+
+# 15. Use .iloc to select the row at position 3 of the car sales DataFrame.
+print(df.iloc[3, 3])
+
+
+# 16. Create a crosstab of the Make and Doors columns.
+data = {"make": ["Toyota", "Ford", "BMW", "Ford", "Toyota", "BMW"], "Doors": [2, 4, 4, 4, 2, 2]}
+df = pd.DataFrame(data)
+df_crosstab = pd.crosstab(df["make"], df["Doors"])
+print(df_crosstab)
+
